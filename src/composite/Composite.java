@@ -2,7 +2,7 @@ package composite;
 
 import java.util.*;
 
-public class Composite {
+public class Composite extends Component {
 
 	private Collection<Component> collect;
 	
@@ -21,5 +21,17 @@ public class Composite {
 
 	public int size() {
 		return collect.size();
+	}
+
+	@Override
+	public boolean stubOperation() {
+		
+		boolean result = true;
+		for(Component compnt:collect)
+		{
+			if(compnt.stubOperation() == false)
+				result = false;
+		}
+		return result;
 	}
 }

@@ -1,5 +1,5 @@
 package composite;
 
-public class Component {
-
+public abstract class Component {
+	abstract public boolean stubOperation();
 }

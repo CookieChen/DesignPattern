@@ -35,5 +35,25 @@ public class CompositeTest{
 		
 		Assert.assertTrue(compsit.size() == 0);
 	}
-
+	
+	@Test
+	public void testStubOperation()
+	{
+		Composite rootComposit = new Composite();
+		Composite childComposite = new Composite();
+		Leaf rootLeaf = new Leaf(){
+			@Override
+			public boolean stubOperation() {
+				return false;
+			}
+		};
+		Leaf childLeaf = new Leaf();
+		
+		childComposite.add(childLeaf);
+		rootComposit.add(childComposite);
+		rootComposit.add(rootLeaf);
+		
+		Assert.assertFalse(rootComposit.stubOperation());
+		Assert.assertTrue(childComposite.stubOperation());
+	}
 }
